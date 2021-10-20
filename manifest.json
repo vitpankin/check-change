@@ -1,24 +1,44 @@
 {
-  "name": "Auto Refresher",
+  "name": "Check Change",
   "version": "1.0",
-  "manifest_version": 2,
+  "manifest_version": 3,
  
-  "description": "Automatically refresh the page on a set interval",  
+  "description": "Automatically refresh the page on a set interval and check if if different from example",  
   "icons" : { 
     "16": "images/refresh-icon16.png",
     "48": "images/refresh-icon48.png",
     "128": "images/refresh-icon128.png" 
   },
   
-  "browser_action": {
+  "action": {
     "default_popup": "popup.html",
     "default_icon": "images/refresh-icon.png"
   },
 
   "background": {
-    "scripts": ["background.js"],
-    "persistent": false
+    "service_worker": "./background.js"
   },
-
-  "permissions": ["activeTab", "storage", "tabs", "http://*/", "https://*/"]
+  "permissions": [
+    "desktopCapture",
+    "activeTab",
+    "storage",
+    "tabs",
+    "scripting",
+    "unlimitedStorage"
+  ],
+  "web_accessible_resources": [{
+    "resources": ["./notification.mp3"],
+    "matches": ["<all_urls>"]
+  }],
+  "host_permissions": [
+    "<all_urls>",
+    "https://*/*",
+    "http://*/*"
+  ],
+  "content_scripts": [
+    {
+    	"matches": ["<all_urls>"],
+    	"js": ["./js/page.js"]
+    }
+  ]
 }

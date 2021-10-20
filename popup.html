@@ -5,14 +5,34 @@
   	<title>Refresher</title>  
   </head>
   <body>
-    <div id="d1">
-      <button id="ss_button"></button>
-    </div>
-    <div id="d2">
-      <form>
-        <label>min<input id="input-min" type="number" value=0 min=0 max=59></label>
-        <label>sec<input id="input-sec" type="number" value=0 min=0 max=59></label>
-      </form>
+    <div class="action-column">
+      <div class="action-row">
+        <div id="d1">
+          <div>
+            <input id="input-time" class="text" type="number" placeholder="Seconds" value=12 min=0 max=59>
+          </div>
+        </div>
+        <div id="d2">
+          <button type="button" id="timer_button">Start</button>
+        </div>
+      </div>
+      <div class="action-row">
+        <div class="action-column">
+          <div>
+            <div id="compare-form">
+              <input type="checkbox" id="compare" name="compare">
+              <label for="compare">Compare reloads</label>
+            </div>
+          </div>
+          <code id="logger">
+          </code>
+        </div>
+      </div>
+      <div class="action-column" id="alert">
+        <div class="action-row">
+          <button type="button" id="dismiss_button">Dismiss alarm</button>
+        </div>
+      </div>
     </div>
   </body>
   <script src="popup.js"></script>
